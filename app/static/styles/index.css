@@ -1,0 +1,435 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root{
+
+ --color:#000A5B;
+ --color1:#D6A85A;
+ --color2:#36055F;
+ --color3:#fff;
+ --color4:#000;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+.hero{
+  background-size: cover;
+  width: 100%;
+  top: 0;
+  position: static;
+  color: var(--color4);
+  z-index: 1;
+  
+  background-color: var(--color1);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.116);
+  transition: 0.5s;
+
+ 
+}
+.nav{
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+  align-items: center;
+}
+
+.nav a {
+color: #000;
+font-weight: 500;
+padding: 10px;
+font-size: 20px;
+font-family: 'Roboto', sans-serif;
+text-decoration: none;
+}
+.nav_logo{
+  height: 100px;
+}
+
+
+
+/* ============================== */
+section{
+  min-height: 50vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 30px;
+ /* Ajusta el ancho según tus necesidades */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--color);
+  color: var(--color3);
+}
+
+.card img {
+  width: 200px; 
+  display: none;
+  border-radius: 4px;
+
+}
+
+.content {
+  flex: 1;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  
+}
+
+p {
+  margin-bottom: 20px;
+  
+}
+
+.a {
+  width: 100%;
+  text-align: center;
+  background-color: var(--color1);
+  color: #fff;
+  text-decoration: none; 
+  padding: 10px 20px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.a:hover {
+  background-color: #7a643d;
+}
+
+/* =========================== */
+
+
+
+
+.footer{
+  text-align: center;
+  width: 100vw !important;
+  color: rgb(0, 0, 0);  
+  padding: 25px;
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.116);
+  margin-top: auto;
+}
+.derechos{
+  margin: 10px;
+  font-family: 'Kanit', sans-serif;
+}
+.contenedorDeColores{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.color{
+  height: 30px;
+  width: 50px;
+  background-color: var(--color);
+  border: #000 solid 0.5px;
+}
+.color1{
+  height: 30px;
+  width: 50px;
+  background-color: var(--color1);
+  border: #000 solid 0.5px;
+}
+.color2{
+  height: 30px;
+  width: 50px;
+  background-color: var(--color2);
+  border: #000 solid 0.5px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo para el botón del dropdown */
+.dropbtn {
+  background-color: var(--color);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilo para el contenido del dropdown (escondido por defecto) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Estilo para los enlaces del dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Cambia el color del enlace al pasar el mouse por encima */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Muestra el contenido del dropdown cuando el botón se haga hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  margin-left: -50px;
+  border-radius: 10px;
+  
+}
+
+/* Opcional: Añade un borde al botón para que parezca un botón tradicional */
+.dropbtn {
+  border-radius: 5px;
+}
+
+.foro {
+  background-color: var(--color1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 60vw;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preg {
+  /* padding: 10px 300px 10px ; */
+  width: 60%;
+  height: 60px;
+  padding: 10px;
+  margin: 20px;
+  resize: none;
+  border-radius: 30px;
+  text-align: center;
+  align-content: center;
+}
+
+.butt {
+  padding: 20px;
+  border-radius: 30px;
+  border: 0px solid transparent;
+  transition: all 0.3s;
+}
+
+.butt:hover {
+  background-color: var(--color);
+  cursor: pointer;
+  color: #fff;
+}
+
+.coment:hover{
+  background-color: var(--color1);
+  color: #000;
+}
+
+.foro div {
+  background-color: var(--color);
+  color: #fff;
+  padding: 20px;
+  margin: 10px;
+  width: 80%;
+  border-radius: 30px;
+}
+
+.foro h2 {
+  margin-top: 30px;
+}
+
+.foro div p {
+  margin-bottom: 0px;
+}
+
+.comentario {
+  background: #ccc !important;
+  color: #000 !important;
+  width: 100% !important;
+}
+
+.rol {
+  color: var(--color1);
+  margin-left: 15px;
+}
+
+.rol-comentario {
+  color: var(--color) !important;
+  margin-left: 7px;
+}
+
+.tops {
+  font-size: 25px;
+  display: flex !important;
+  flex-direction: row !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  margin-bottom: 5px !important;
+}
+
+@media (min-width:845px){
+  section{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+      min-height: 60vh;
+  }
+  .card {
+      display: flex;
+      flex-direction: row;
+      padding: 10px;
+    }
+    .card img {
+      width: 300px;
+      display: flex;
+      margin-right: 50px;
+    }
+    .content{
+      flex: 1;
+      
+      margin-right: 50px;
+    }
+    h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    p {
+      margin-bottom: 25px;
+      font-size: 20px;
+      
+    }
+    
+    .a {
+      width: 100%;
+      text-align: center;
+      background-color: var(--color1);
+      color: #fff;
+      text-decoration: none; 
+      padding: 10px 20px;
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+    .a:hover{
+      background-color: #7a643d;
+    }
+      .nav{
+          --state-hamburguesa:scale(0);
+          --state-menu:translate(0);
+          
+      }
+      .nav:target{
+          --state-close:scale(0);
+      }
+      .nav_links{
+          padding: 0;
+          background:unset;
+          position: unset;
+          gap: 1.5em;
+          grid-auto-flow: column;
+       
+          transform: unset;
+         
+          grid-column: -2/-1;
+          grid-row: 1/2;
+       }
+      .nav_link{
+          font-size: 1.3em;
+          letter-spacing: none;
+          background-color: unset;
+          color: var(--color3);
+      }
+      
+      .nav_item{
+          list-style: none;
+            
+          padding: 0;
+          
+      }
+      .primero{
+          border-top: none;
+          border-bottom: none;
+      }
+      .segundo{
+          border-bottom: none;
+      }
+      .tercero{
+          border-bottom: none;
+      }
+      .cuarto{
+          margin-top: 0;
+          border: none;
+       
+      }
+}
+
+@media (max-width:845px){
+
+  .nav {
+    flex-direction: column;
+  }
+
+  .nav a {
+    margin: 20px;
+  }
+
+  .nav :nth-child(2) {
+    padding: 10px;
+  }
+
+  .dropdown-content a { 
+    padding: 0px 0px;
+  }
+
+  .foro {
+    width: 100vw;
+  }
+
+  .card {
+    width: 100vw;
+  }
+
+  .rol {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
+
+    <title>Mis datos</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>Mis datos</h1>
+    <main>
+        {% if user.is_authenticated %}
+
+        {% if data %}
+        <div class="cont-form">
+            <img src="{% static 'profile-pic.png' %}" class="fotos-prop">
+            <div>
+                <h2>{{ user.username }}</h2>
+                <p>{{user.email}}</p>
+                {% for group in user.groups.all %}
+                <p class="grupo">{{ group.name }}</p>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% else %}
+        <h2>Inicia sesion para ver tus datos</h2>
+        {% endif %}
+    </main>
+    {% include "footer.html" %}
+</body>
+</html>

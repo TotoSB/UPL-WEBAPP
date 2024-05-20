@@ -1,0 +1,53 @@
+:root{
+
+    --color:#000A5B;
+    --color1:#D6A85A;
+    --color2:#36055F;
+    --color3:#fff;
+    --color4:#000;
+}
+
+body {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.cont-form {
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    margin-top: 20px;
+    background-color: var(--color1);
+    padding: 30px;
+    border-radius: 30px;
+}
+h2 {
+    margin-top: 5px;
+    text-align: left;
+    margin-bottom: 4px !important;
+}
+
+.cont-form div {
+    margin-left: 10px;
+}
+
+.cont-form div :nth-child(2){
+    margin-bottom: 4px !important;
+    color: var(--color);
+}
+
+.fotos-prop {
+    width: 180px;
+    border-radius: 50%;
+}
+
+h1 {
+    margin-top: 30px;
+}
+
+.grupo {
+    color: #333 !important;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/propuestas.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuestas</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>Propuestas</h1>
+    <main>
+        {% for propuesta in propuestas %}
+        <div class="cont-form">
+            <img src="media_img/{{propuesta.banner_img}}" class="fotos-prop">
+            <div>
+                <h3>{{propuesta.titulo}}</h2>
+                <p class="fecha">{{propuesta.fecha_creacion}}</p>
+                <p>{{propuesta.descripcion}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+    {% include "footer.html" %}
+</body>
+</html>

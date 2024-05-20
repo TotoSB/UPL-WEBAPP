@@ -1,0 +1,58 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <title>Iniciar Sesion</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {% include "header.html" %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Iniciar sesion</button>
+        {% include "footer.html" %}
+    </form>
+</body>
+</html> {% endcomment %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <title>Iniciar Sesion</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <main>
+        <h2>Iniciar sesion</h2>
+        <form method="post" action="{% url 'logear' %}">
+            {% csrf_token %}
+            <p>
+                <label for="username">Nombre y apellido:</label>
+                <input type="text" id="username" name="username" placeholder="Nombre y apellido:" required>
+            </p>
+            <br>
+            <p>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </p>
+            <br>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <input type="submit" id="boton" value="Iniciar sesion">
+        </form>
+    </main>
+        {% include "footer.html" %}
+</body>
+</html>

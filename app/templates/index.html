@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+<body>
+    {% include "header.html" %}
+
+    <section>
+        <div class="card">
+            <img src="{% static 'logo_amarillo.jpg' %}" alt="Descripción de la imagen">
+            <div class="content">
+                <h2>Unidos por la Libertad</h2>
+                <p>Somos el centro de estudiantes de la Escuela<br>
+                    Secundaria Técnica N°7.<br><br>
+                    Somos un centro que buscamos satisfacer,<br>
+                    ayudar, acompañar, y compartir con nuestros<br>
+                    compañeros de la institución técnica
+                </p>
+                <a class="a" href="{% url 'propuestas' %}">Leer propuestas</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="foro">
+        <h2>Foro</h2>
+        {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <textarea rows="10" cols="10" class="preg" name="pregunta" placeholder="Escribir duda/sugerencia/etc"></textarea>
+            <input type="submit" value="Enviar" class="butt">
+        </form>
+        {% else %}
+        <p>Inicia sesion para acceder al foro</p>
+        {% endif %}
+
+        {% for pregunta in preguntas %}
+        <div>
+            <div class="tops">
+                <h4><b>{{ pregunta.autor }}</b></h4>
+                <b class="rol">{{pregunta.autor.groups.first}}</b>
+            </div>
+            <p>{{ pregunta.contenido }}</p>
+            {% for comentario in pregunta.comentario_set.all %}
+            <div class="comentario">
+                <b>{{ comentario.autor }}</b>
+                <b class="rol-comentario">{{comentario.autor.groups.first}}</b>
+                <p>{{ comentario.contenido }}</p>
+            </div>
+            {% endfor %}
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'home' %}">
+                {% csrf_token %}
+                <textarea rows="10" cols="10" class="preg" name="respuesta" placeholder="Responder"></textarea>
+                <input type="hidden" name="pregunta_id" value="{{ pregunta.id }}">
+                <input type="submit" value="Enviar" class="butt coment">
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+
+    {% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+<header class="hero">
+    <nav class="nav container" id="nav">
+        <div>
+            <a href="{% url "home" %}"><img class="nav_logo" src="{% static 'logo_amarillo.jpg' %}" alt=""></a>
+        </div>
+        {% if user.is_authenticated %}
+        {% comment %} Llevar a una pagina que muestre los datos del usuario y las preguntas hechas por el mismo {% endcomment %}
+            <div class="dropdown">
+                <button class="dropbtn">{{ user.username }}</button>
+                <div class="dropdown-content">
+                    <a href="{% url "profile" %}">Mis datos</a>
+                    <a href="{% url 'cerrar' %}">Cerrar sesion</a>
+                </div>
+            </div>
+        {% else %}
+        <div>
+            <a href="{% url 'login' %}">Iniciar sesion</a>
+            <a href="{% url 'registro' %}">Registrarse</a>
+         </div>
+        {% endif %}
+    </nav>
+</header>
