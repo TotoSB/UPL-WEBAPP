@@ -8,7 +8,7 @@ class Pregunta(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.contenido
+        return f"@{self.autor.username}: {self.contenido}"
 
 class Comentario(models.Model):
     contenido = models.TextField()
@@ -17,7 +17,7 @@ class Comentario(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Comentario de {self.autor.username} en {self.pregunta.titulo}"
+        return f"Comentario de {self.autor.username} en {self.pregunta.contenido}"
 
 
 
