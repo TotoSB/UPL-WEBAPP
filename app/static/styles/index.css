@@ -296,6 +296,13 @@ form {
   padding: 0px !important;
   margin: 0px !important;
   margin-bottom: 5px !important;
+  align-items: center;
+}
+
+#fecha {
+  font-size: 14px;
+  margin: 3px 3px 3px 0px;
+  color: #ccc;
 }
 
 @media (min-width:845px){

@@ -14,13 +14,13 @@ from django.contrib.auth.models import Group
 # Create your views here.
 def inicio(request):
     # Foro
-    preguntas = Pregunta.objects.all()
+    preguntas = Pregunta.objects.all().order_by('-fecha_creacion')
     respuestas = Comentario.objects.all()
     if request.method == 'POST':
         if 'pregunta' in request.POST:
             pregunta = request.POST['pregunta']
             redactor = request.user
-            pregunta_obj = Pregunta.objects.create(contenido=pregunta, autor=redactor)
+            pregunta_obj = Pregunta.objects.create(contenido=pregunta, autor=redactor, fecha=fecha_crea)
             pregunta_obj.save()
             return redirect('home')
         elif 'respuesta' in request.POST:

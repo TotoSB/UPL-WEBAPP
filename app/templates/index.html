@@ -45,6 +45,7 @@
                 <h4><b>{{ pregunta.autor }}</b></h4>
                 <b class="rol">{{pregunta.autor.groups.first}}</b>
             </div>
+            <p id="fecha">{{pregunta.fecha_creacion}}</p>
             <p>{{ pregunta.contenido }}</p>
             {% for comentario in pregunta.comentario_set.all %}
             <div class="comentario">
