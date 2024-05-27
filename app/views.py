@@ -72,26 +72,9 @@ def sign_in(request):
             form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-def add_propuesta(request):
-    context = {}
-    if request.method =='POST':
-        form = ProyectoForm(request.POST, request.FILES)
-        if form.is_valid():  
-            titulo_prop = request.POST['titulo_proyecto']
-            desc_prop = request.POST['descripcion']
-            imagen = form.cleaned_data.get('img')
-            obj = Proyectos.objects.create(titulo=titulo_prop, descripcion=desc_prop, banner_img=imagen)
-            obj.save()
-
-            return redirect('home')
-    else:  
-        form = ProyectoForm()  
-        context['form']= form
-
-    return render(request, "admin/crear_propuesta.html", context)
-
 def propuestas(request):
-    propuestas_listadas = Proyectos.objects.all()
+    propuestas_listadas = Proyectos.objects.all().order_by('-fecha_creacion')
+
     return render(request, "propuestas.html", {"propuestas" : propuestas_listadas})
 
 def profile(request):
