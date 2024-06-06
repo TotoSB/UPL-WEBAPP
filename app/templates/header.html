@@ -1,23 +1,38 @@
 {% load static %}
-<header class="hero">
+<header class="hero" id="hero">
     <nav class="nav container" id="nav">
-        <div>
+        <!-- <div>
             <a href="{% url "home" %}"><img class="nav_logo" src="{% static 'logo_amarillo.jpg' %}" alt=""></a>
+        </div> -->
+
+        <div>
+            <a class="nav_logo" href="{% url "home" %}">UPL</a>
         </div>
+
         {% if user.is_authenticated %}
         {% comment %} Llevar a una pagina que muestre los datos del usuario y las preguntas hechas por el mismo {% endcomment %}
-            <div class="dropdown">
-                <button class="dropbtn">{{ user.username }}</button>
-                <div class="dropdown-content">
-                    <a href="{% url "profile" %}">Mis datos</a>
-                    <a href="{% url 'cerrar' %}">Cerrar sesion</a>
+            <!-- <div class="dropdown">
+                <button class="dropbtn">{{ user.username }}</button> -->
+                <div class="nav_links">
+                    <li class="nav_item"><a class="nav_link" href="{% url 'profile' %}">Mis datos</a></li>
+                    <li class="nav_item"><a class="nav_link" href="{% url 'cerrar' %}">Cerrar sesion</a></li>
                 </div>
-            </div>
+            <!-- </div> -->
         {% else %}
-        <div>
-            <a href="{% url 'login' %}">Iniciar sesion</a>
-            <a href="{% url 'registro' %}">Registrarse</a>
-         </div>
+        <ul class="nav_links">
+        <!-- <div> -->
+            <li class="nav_item"><a class="nav_link" href="{% url 'login' %}">Iniciar sesion</a></li>
+            <li class="nav_item"><a class="nav_link" href="{% url 'registro' %}">Registrarse</a></li>
+            <!-- </div> -->
+         </ul>
         {% endif %}
+
+        <a href="#nav" class="nav_hamburguesa">
+            <i class='bx bx-menu nav_icon'></i>
+        </a>
+
+        <a href="#" class="nav_close">
+            <i class='bx bx-x nav_icon_close'></i>
+        </a>
     </nav>
 </header>

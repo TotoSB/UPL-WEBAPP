@@ -1,51 +1,124 @@
-:root{
-
-    --color:#000A5B;
-    --color1:#D6A85A;
-    --color2:#36055F;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: "Bakbak One", sans-serif;
+  }
+  
+  :root{
+  
+    --color:#1877f2;
+    --color1:#f5d34d;
+    --color2:#BA17BD;
     --color3:#fff;
     --color4:#000;
-}
+  }
+
+  body{
+    background-color: #eee;
+  }
 
 main {
     display: flex;
-    margin-top: 50px;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
+    height: 100%;
+    padding: 20px 0px;
+    text-align: start;
 }
 
+main h1{
+    display: none;
+  }
+  
+  main h2{
+      color: var(--color4);
+      font-size: 22px;
+  }
+
 form {
-    width: 50vw;
-    background-color: var(--color1);
+    margin-top: 5px;
+    background-color: var(--color3);
     border-radius: 3px;
     color: #fff;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    text-align: start;
     align-items: center;
     padding: 30px;
+}
+
+.text_start{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+
+    border: none;
+
+}
+
+form p{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+ 
+    /* gap: 10px; */
+}
+.otro{
+    gap: 10px;
+    justify-content: start;
+    text-align: center;
+}
+
+form label{
+    text-align: start;
+    color: var(--color4);
 }
 
 form input {
     padding: 10px;
     border-radius: 4px;
-    border: 0px solid var(--color);
+    border: 3px solid var(--color2);
 }
 
+.tipo_cuenta{
+    color: var(--color4);
+    font-size: 20px;
+    border: none;
+}
 
 #boton {
-    background-color: #000A5B;
-    color: #fff;
+    background-color: transparent;
+    color: var(--color4);
     cursor: pointer;
     margin-top: 10px !important;
+    width: 100%;
+    font-size: 20px;
+}
+#boton:hover{
+    transition: 0.2s ease-in-out all;
+    background-color: var(--color2);
+    color: var(--color3);
+    cursor: pointer;
 }
 
-@media (max-width:400px){
 
-    form {
-        width: 100vw !important;
+@media (min-width:845px){
+    form{
+        margin-top: 0;
     }
-
+    main h1{
+        margin-bottom: 25px;
+        display: flex;
+        color: var(--color2);
+        letter-spacing: 7px;
+        text-decoration: none;
+      }
 }

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=E:\programacion\UPL\env
+set VIRTUAL_ENV=C:\Users\alexi\Desktop\UPL-WEBAPP\env
 
 if not defined PROMPT set PROMPT=$P$G
 

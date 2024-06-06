@@ -8,16 +8,26 @@
     <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propuestas</title>
+
+    <!-- link googleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+
+    <!-- link boxicons para el menu -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     {% include "header.html" %}
-    <h1>Propuestas</h1>
     <main>
+        <h1>Propuestas</h1>
+
         {% for propuesta in propuestas %}
         <div class="cont-form">
             <img src="media_img/{{propuesta.banner_img}}" class="fotos-prop">
             <div>
-                <h3>{{propuesta.titulo}}</h2>
+                <h3>{{propuesta.titulo}}</h3>
                 <p class="fecha">{{propuesta.fecha_creacion}}</p>
                 <p>{{propuesta.descripcion}}</p>
             </div>

@@ -10,7 +10,9 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        {% include "header.html" %}
+
+        <!-- ACA IBA EL INCLUIDE HEADER PERO LO SAQUE -->
+
         {{ form.as_p }}
         <button type="submit" class="btn btn-success">Iniciar sesion</button>
         {% include "footer.html" %}
@@ -26,21 +28,30 @@
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
     <link rel="stylesheet" href="{% static 'styles/login.css' %}">
     <title>Iniciar Sesion</title>
+
+    <!-- AGREGE link a googleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    {% include "header.html" %}
+    <!-- ACA IBA EL INCLUIDE HEADER PERO LO SAQUE TAMBIEN -->
+
     <main>
-        <h2>Iniciar sesion</h2>
+        <h1>Unidos por Libertad</h1>
         <form method="post" action="{% url 'logear' %}">
             {% csrf_token %}
+            <h2>Iniciar sesion en UPL</h2>
+
             <p>
-                <label for="username">Nombre y apellido:</label>
-                <input type="text" id="username" name="username" placeholder="Nombre y apellido:" required>
+                <label for="username">Nombre y Apellido</label>
+                <input type="text" id="username" name="username" placeholder="Nombre/Apellido" required>
             </p>
-            <br>
+
             <p>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Contraseña"  required>
             </p>
             <br>
             {% if messages %}
@@ -50,6 +61,7 @@
                 {% endfor %}
             </ul>
             {% endif %}
+            <br>
             <input type="submit" id="boton" value="Iniciar sesion">
         </form>
     </main>

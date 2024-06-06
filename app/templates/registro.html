@@ -8,44 +8,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
 
+
+     <!-- link googleFonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+
     <title>Registro</title>
 </head>
 <body>
-    {% include "header.html" %}
+    <!-- BORRE EL INCLUDE HEADERRR -->
     <main>
-        <h2>Registro</h2>
+        <h1>Unidos por Libertad</h1>
         <form method="post" action="{% url 'registro' %}">
             {% csrf_token %}
-            <label for="username">Nombre de usuario:</label>
-            <input type="text" id="username" name="username" placeholder="Ingresa tu nombre de usuario" required>
-            <br>
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" placeholder="Ingresa tu email" required>
-            <br>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
-            <br>
-            <label for="password2">Confirmar contraseña:</label>
-            <input type="password" id="password2" name="password2" placeholder="Confirmar contraseña" required>
-            <br>
-            <p>Selecciona tu tipo de cuenta</p>
-            <p>
-                <label for="grupo">Estudiante</label>
-                <input type="radio" id="admin" name="grupo" value="Estudiante" checked>
+            <h2>Crea una cuenta</h2>
+
+            <p class="text_start">
+            <label class="user" for="username">Nombre de usuario</label>
+            <input type="text" id="username" name="username" placeholder="Nombre de Usuario"  required>
+            
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="Correo electrónico"  required>
+            
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Contraseña"  required>
+            
+            <label for="password2">Confirmar contraseña</label>
+            <input type="password" id="password2" name="password2" placeholder="Confirmar Contraseña" required>
             </p>
+
+            <p class="tipo_cuenta">Selecciona tu tipo de cuenta</p>
             <p>
                 <label for="grupo">Docente</label>
                 <input type="radio" id="admin" name="grupo" value="Docente">
+
+                <label for="grupo">Estudiante</label>
+                <input type="radio" id="admin" name="grupo" value="Estudiante" checked>
             </p>
+            <!-- <p>
+                <label for="grupo">Docente</label>
+                <input type="radio" id="admin" name="grupo" value="Docente">
+            </p> -->
             <p>
                 <label for="grupo">Administrativo</label>
                 <input type="radio" id="admin" name="grupo" value="Administrativo">
-            </p>
-            <p>
+
                 <label for="grupo">Padre</label>
                 <input type="radio" id="admin" name="grupo" value="Padre">
             </p>
-            <p>
+            <!-- <p>
+                <label for="grupo">Padre</label>
+                <input type="radio" id="admin" name="grupo" value="Padre">
+            </p> -->
+            <p class="otro">
                 <label for="grupo">Otro</label>
                 <input type="radio" id="admin" name="grupo" value="Otro">
             </p>

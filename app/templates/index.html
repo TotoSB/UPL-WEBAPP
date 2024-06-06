@@ -7,32 +7,43 @@
     <title>Inicio</title>
     <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+
+
+
+    <!-- link googleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+
+    <!-- link boxicons para el menu -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     {% include "header.html" %}
 
-    <section>
+    <section class="sectionOne">
         <div class="card">
             <img src="{% static 'logo_amarillo.jpg' %}" alt="Descripción de la imagen">
             <div class="content">
-                <h2>Unidos por la Libertad</h2>
+                <h2>Unidos por Libertad</h2>
                 <p>Somos el centro de estudiantes de la Escuela<br>
                     Secundaria Técnica N°7.<br><br>
                     Somos un centro que buscamos satisfacer,<br>
                     ayudar, acompañar, y compartir con nuestros<br>
                     compañeros de la institución técnica
                 </p>
-                <a class="a" href="{% url 'propuestas' %}">Leer propuestas</a>
+                <a class="a" href="{% url 'propuestas' %}">Leer Propuestas</a>
             </div>
         </div>
     </section>
 
     <section class="foro">
-        <h2>Foro</h2>
+        <h2>Forito UPL</h2>
         {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'home' %}">
+        <form class="contain_dudas" method="POST" action="{% url 'home' %}">
             {% csrf_token %}
-            <textarea rows="10" cols="10" class="preg" name="pregunta" placeholder="Escribir duda/sugerencia/etc"></textarea>
+            <textarea  class="preg" name="pregunta" placeholder="Escribir duda/sugerencia/etc"></textarea>
             <input type="submit" value="Enviar" class="butt">
         </form>
         {% else %}
@@ -40,24 +51,24 @@
         {% endif %}
 
         {% for pregunta in preguntas %}
-        <div>
+        <div class="contain">
             <div class="tops">
                 <h4><b>{{ pregunta.autor }}</b></h4>
                 <b class="rol">{{pregunta.autor.groups.first}}</b>
             </div>
             <p id="fecha">{{pregunta.fecha_creacion}}</p>
-            <p>{{ pregunta.contenido }}</p>
+            <p id="pregunta">{{ pregunta.contenido }}</p>
             {% for comentario in pregunta.comentario_set.all %}
-            <div class="comentario">
-                <b>{{ comentario.autor }}</b>
+            <div class="contain_comentario">
+                <b class="user">{{ comentario.autor }}</b>
                 <b class="rol-comentario">{{comentario.autor.groups.first}}</b>
-                <p>{{ comentario.contenido }}</p>
+                <p class="comentario">{{ comentario.contenido }}</p>
             </div>
             {% endfor %}
             {% if user.is_authenticated %}
-            <form method="POST" action="{% url 'home' %}">
+            <form class="contain_respuesta" method="POST" action="{% url 'home' %}">
                 {% csrf_token %}
-                <textarea rows="10" cols="10" class="preg" name="respuesta" placeholder="Responder"></textarea>
+                <textarea class="preg" name="respuesta" placeholder="Responder"></textarea>
                 <input type="hidden" name="pregunta_id" value="{{ pregunta.id }}">
                 <input type="submit" value="Enviar" class="butt coment">
             </form>

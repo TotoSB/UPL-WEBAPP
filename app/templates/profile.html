@@ -9,23 +9,33 @@
     <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
 
     <title>Mis datos</title>
+
+    <!-- link googleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+
+    <!-- link boxicons para el menu -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     {% include "header.html" %}
-    <h1>Mis datos</h1>
+    
     <main>
+        <h1>Mis datos</h1>
         {% if user.is_authenticated %}
 
         {% if data %}
         <div class="cont-form">
-            <img src="{% static 'profile-pic.png' %}" class="fotos-prop">
-            <div>
+            <!-- <img src="{% static 'profile-pic.png' %}" class="fotos-prop"> -->
+            <!-- <div> -->
                 <h2>{{ user.username }}</h2>
                 <p>{{user.email}}</p>
                 {% for group in user.groups.all %}
                 <p class="grupo">{{ group.name }}</p>
             {% endfor %}
-            </div>
+            <!-- </div> -->
         </div>
         {% endif %}
 

@@ -1,78 +1,109 @@
-:root{
-
-    --color:#000A5B;
-    --color1:#D6A85A;
-    --color2:#36055F;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: "Bakbak One", sans-serif;
+  }
+  
+  :root{
+  
+    --color:#1877f2;
+    --color1:#f5d34d;
+    --color2:#BA17BD;
     --color3:#fff;
     --color4:#000;
-}
+  }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #eee;
 }
 
 h1 {
-    margin: 15px;
+    margin-top: 105px;
 }
 
 .fotos-prop {
-    margin: 10px;
-    box-shadow: 1px 0px 4px 4px rgba(0, 0, 0, 0.479);
-    border-radius: 10px;
-    max-width: 200px; 
-    max-height: 200px; 
-    width: auto; 
-    height: auto; 
+    /* margin: 10px; */
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    padding: 20px;
+    /* width: auto; 
+    height: auto;  */
 }
 
 main {
-    background-color: var(--color1);
-    width: 70vw;
-    padding: 10px;
+    background-color: #eee;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 40px 20px;
 }
 
 .fecha {
     color: #444;
+    text-align: center;
 }
 
 .cont-form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* background-color: transparent ; */
+    width: 100%;
+    margin-top: 30px;
+    max-width: 500px;
+
+    overflow: hidden;
+    padding: 10px;
+    border-bottom: var(--color1) solid 5px;
+    border-top: var(--color1) solid 5px;
+
+    background-color: #fff;
+}
+.cont-form img{
+  border-radius: 25px;
 }
 
 h3 {
-    font-size: 20px;
+    text-align: center;
+    font-size: 22px;
 }
 
-.cont-form div {
-    padding: 25px;
-}
+
 
 p {
-    margin-bottom: 9px !important;
+    text-align: justify;
+    justify-content: start;
 }
 
-@media (max-width:600px){
+@media (min-width:845px){
     .cont-form {
         flex-direction: column;
+        min-width: 700px;
+
+    }
+
+    h3 {
         text-align: center;
+        font-size: 25px;
     }
 
     main {
         min-width: 250px;
     }
 
-    .fotos-prop {
+    /* .fotos-prop {
         margin-top: 20px;
-    }
+    } */
 
     .cont-form div {
         padding: 10px;

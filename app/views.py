@@ -1,4 +1,3 @@
-
 import requests
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -20,7 +19,7 @@ def inicio(request):
         if 'pregunta' in request.POST:
             pregunta = request.POST['pregunta']
             redactor = request.user
-            pregunta_obj = Pregunta.objects.create(contenido=pregunta, autor=redactor, fecha=fecha_crea)
+            pregunta_obj = Pregunta.objects.create(contenido=pregunta, autor=redactor)
             pregunta_obj.save()
             return redirect('home')
         elif 'respuesta' in request.POST:
