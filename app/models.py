@@ -25,7 +25,7 @@ class Proyectos(models.Model):
     titulo = models.CharField(max_length=50)
     banner_img = models.ImageField(upload_to="media_img")
     descripcion = models.CharField(max_length=1900)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField()
 
     def __str__(self):
         return self.titulo
