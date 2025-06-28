@@ -1,0 +1,32 @@
+# Ignorar dependencias de Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignorar archivos de build (ya que la compilación se hace dentro de Docker)
+dist
+# Si tienes una carpeta de build diferente, añádela aquí
+
+# Ignorar archivos de configuración de Docker y Git
+Dockerfile
+docker-compose.yml
+.dockerignore
+.git
+.gitignore
+
+# Ignorar archivos de entorno locales (si los usas fuera de Docker para desarrollo)
+.env
+
+# Logs
+logs
+*.log
+
+# Directorios del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de IDEs
+.idea
+.vscode
+*.swp
+*.swo

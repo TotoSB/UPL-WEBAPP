@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestjs_api
+    ports:
+      - "3000:3000" # Mapea el puerto 3000 del contenedor al puerto 3000 del host
+    environment:
+      NODE_ENV: development
+      # Variables de entorno para la conexión a la base de datos
+      # Estas serán utilizadas por TypeORM en la aplicación NestJS
+      DB_TYPE: postgres
+      DB_HOST: db # Nombre del servicio de la base de datos en Docker Compose
+      DB_PORT: 5432
+      DB_USERNAME: postgres # Usuario por defecto de la imagen de postgres
+      DB_PASSWORD: mysecretpassword # ¡Cambiar en producción!
+      DB_DATABASE: upl_nest_db # Nombre de la base de datos
+      # Variables para JWT (ejemplo)
+      JWT_SECRET: yourSuperSecretKeyForJWT # ¡Cambiar en producción y usar .env!
+      JWT_EXPIRATION_TIME: 3600s # 1 hora
+    volumes:
+      - .:/usr/src/app # Monta el directorio actual en el contenedor para desarrollo (hot-reloading)
+      - /usr/src/app/node_modules # Evita que node_modules local sobrescriba el del contenedor
+    depends_on:
+      - db
+    networks:
+      - upl_network
+
+  db:
+    image: postgres:15-alpine # Usar una versión específica de PostgreSQL
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword # Debe coincidir con DB_PASSWORD arriba
+      POSTGRES_DB: upl_nest_db # Debe coincidir con DB_DATABASE arriba
+    ports:
+      - "5432:5432" # Mapea el puerto 5432 del contenedor al puerto 5432 del host (opcional, para acceso externo a la BD)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Volumen para persistir los datos de PostgreSQL
+    networks:
+      - upl_network
+
+volumes:
+  postgres_data: # Define el volumen nombrado
+
+networks:
+  upl_network: # Define la red personalizada
+    driver: bridge
