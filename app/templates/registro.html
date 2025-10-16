@@ -1,73 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
     <link rel="stylesheet" href="{% static 'styles/register.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
+    <title>Registro - Técnica 7</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-     <!-- link googleFonts -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
-
-    <title>Registro</title>
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <!-- BORRE EL INCLUDE HEADERRR -->
     <main>
-        <h1>Unidos por Libertad</h1>
-        <form method="post" action="{% url 'registro' %}">
+        <h1>Técnica 7</h1>
+        <h2>Crear Cuenta</h2>
+        <p class="subtitle">Únete a nuestra comunidad educativa y participa en el foro</p>
+
+        <!-- Mensajes de Django -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'registro' %}">
             {% csrf_token %}
-            <h2>Crea una cuenta</h2>
-
-            <p class="text_start">
-            <label class="user" for="username">Nombre de usuario</label>
-            <input type="text" id="username" name="username" placeholder="Nombre de Usuario"  required>
             
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="Correo electrónico"  required>
+            <div class="text_start">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first_name">Nombre</label>
+                        <div class="input-container">
+                            <input type="text" id="first_name" name="first_name" placeholder="Tu nombre" required>
+                            <i class='bx bx-user input-icon'></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Apellido</label>
+                        <div class="input-container">
+                            <input type="text" id="last_name" name="last_name" placeholder="Tu apellido" required>
+                            <i class='bx bx-user-plus input-icon'></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <div class="input-container">
+                        <input type="text" id="username" name="username" placeholder="Elige un usuario" required>
+                        <i class='bx bx-at input-icon'></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-container">
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        <i class='bx bx-envelope input-icon'></i>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password1">Contraseña</label>
+                        <div class="input-container">
+                            <input type="password" id="password1" name="password1" placeholder="Crea una contraseña" required>
+                            <i class='bx bx-lock-alt input-icon'></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password2">Confirmar Contraseña</label>
+                        <div class="input-container">
+                            <input type="password" id="password2" name="password2" placeholder="Repite tu contraseña" required>
+                            <i class='bx bx-lock-open-alt input-icon'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="tipo_cuenta">Tipo de Cuenta</h3>
             
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="Contraseña"  required>
-            
-            <label for="password2">Confirmar contraseña</label>
-            <input type="password" id="password2" name="password2" placeholder="Confirmar Contraseña" required>
-            </p>
+            <div class="otro">
+                <div class="radio-group">
+                    <input type="radio" id="estudiante" name="user_type" value="estudiante" checked>
+                    <label for="estudiante" class="radio-label">Estudiante</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="docente" name="user_type" value="docente">
+                    <label for="docente" class="radio-label">Docente</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="administrativo" name="user_type" value="administrativo">
+                    <label for="administrativo" class="radio-label">Administrativo</label>
+                </div>
+            </div>
 
-            <p class="tipo_cuenta">Selecciona tu tipo de cuenta</p>
-            <p>
-                <label for="grupo">Docente</label>
-                <input type="radio" id="admin" name="grupo" value="Docente">
-
-                <label for="grupo">Estudiante</label>
-                <input type="radio" id="admin" name="grupo" value="Estudiante" checked>
-            </p>
-            <!-- <p>
-                <label for="grupo">Docente</label>
-                <input type="radio" id="admin" name="grupo" value="Docente">
-            </p> -->
-            <p>
-                <label for="grupo">Administrativo</label>
-                <input type="radio" id="admin" name="grupo" value="Administrativo">
-
-                <label for="grupo">Padre</label>
-                <input type="radio" id="admin" name="grupo" value="Padre">
-            </p>
-            <!-- <p>
-                <label for="grupo">Padre</label>
-                <input type="radio" id="admin" name="grupo" value="Padre">
-            </p> -->
-            <p class="otro">
-                <label for="grupo">Otro</label>
-                <input type="radio" id="admin" name="grupo" value="Otro">
-            </p>
-            <input type="submit" id="boton" value="Registrarse">
+            <button type="submit" id="boton" class="wave-effect">
+                Registrarse
+            </button>
         </form>
+
+        <div class="register-links">
+            <a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia Sesión</a>
+        </div>
     </main>
-    {% include "footer.html" %}
 </body>
 </html>

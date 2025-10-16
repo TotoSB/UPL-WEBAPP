@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'logo_amarillo.jpg' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
-
-
 
     <!-- link googleFonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- link boxicons para el menu -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -24,22 +22,21 @@
 
     <section class="sectionOne">
         <div class="card">
-            <img src="{% static 'logo_amarillo.jpg' %}" alt="Descripción de la imagen">
+            <img src="{% static 'logo.png' %}" alt="Descripción de la imagen">
             <div class="content">
-                <h2>Unidos por Libertad</h2>
-                <p>Somos el centro de estudiantes de la Escuela<br>
-                    Secundaria Técnica N°7.<br><br>
-                    Somos un centro que buscamos satisfacer,<br>
-                    ayudar, acompañar, y compartir con nuestros<br>
-                    compañeros de la institución técnica
+                <h2>Tecnica 7</h2>
+                <p>Somos la Tecnica N°7<br>
+                    Ubicada en Lomas De Zamora<br><br>
+                    Este foro busca despejar dudas y<br>
+                    ayudar en la comunidad educativa<br>
+                    entre todos
                 </p>
-                <a class="a" href="{% url 'propuestas' %}">Leer Propuestas</a>
             </div>
         </div>
     </section>
 
-    <section class="foro">
-        <h2>Forito UPL</h2>
+    <section class="foro" id="foro">
+        <h2>Foro Tecnica</h2>
         {% if user.is_authenticated %}
         <form class="contain_dudas" method="POST" action="{% url 'home' %}">
             {% csrf_token %}
@@ -54,14 +51,26 @@
         <div class="contain">
             <div class="tops">
                 <h4><b>{{ pregunta.autor }}</b></h4>
-                <b class="rol">{{pregunta.autor.groups.first}}</b>
+                <b class="rol">
+                    {% if pregunta.autor.groups.first %}
+                        {{ pregunta.autor.groups.first.name }}
+                    {% else %}
+                        Sin rol
+                    {% endif %}
+                </b>
             </div>
             <p id="fecha">{{pregunta.fecha_creacion}}</p>
             <p id="pregunta">{{ pregunta.contenido }}</p>
             {% for comentario in pregunta.comentario_set.all %}
             <div class="contain_comentario">
                 <b class="user">{{ comentario.autor }}</b>
-                <b class="rol-comentario">{{comentario.autor.groups.first}}</b>
+                <b class="rol-comentario">
+                    {% if comentario.autor.groups.first %}
+                        {{ comentario.autor.groups.first.name }}
+                    {% else %}
+                        Sin rol
+                    {% endif %}
+                </b>
                 <p class="comentario">{{ comentario.contenido }}</p>
             </div>
             {% endfor %}
@@ -77,6 +86,114 @@
         {% endfor %}
     </section>
 
+    <!-- NUEVA SECCIÓN: PREGUNTAS FRECUENTES -->
+     <!-- NUEVA SECCIÓN: PREGUNTAS FRECUENTES MEJORADA -->
+    <section class="faq-section">
+        <div class="faq-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="faq-container">
+            <h2 class="faq-title">Preguntas Frecuentes</h2>
+            <p class="faq-subtitle">Encuentra respuestas rápidas a las consultas más comunes de nuestra comunidad educativa</p>
+            
+            <div class="faq-grid">
+                <!-- Las mismas preguntas pero con mejor estructura -->
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>¿A que hora esta abierta la escuela?</h3>
+                        <i class='bx bx-chevron-down faq-icon'></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La escuela permanece abierta de 7am a 18:20hs de lunes a viernes</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>¿Cómo solicito un certificado de alumno regular?</h3>
+                        <i class='bx bx-chevron-down faq-icon'></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los certificados se solicitan al preceptor de tu curso</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>¿Qué especialidades técnicas ofrece la escuela?</h3>
+                        <i class='bx bx-chevron-down faq-icon'></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ofrecemos dos especialidades:  Programacion y Multimedios, que se dictan a partir del 4° año</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>¿Cuándo son las fechas de inscripción para el próximo ciclo?</h3>
+                        <i class='bx bx-chevron-down faq-icon'></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Las inscripciones para el ciclo lectivo 2026 estarán abiertas desde el 15 de noviembre hasta el 20 de diciembre. La documentación requerida se publicará en nuestras redes sociales.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>¿Cómo funciona el sistema de prácticas profesionalizantes?</h3>
+                        <i class='bx bx-chevron-down faq-icon'></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Las prácticas profesionalizantes son obligatorias para 7mo año. Se realizan en empresas conveniadas y tienen una carga horaria de 200 horas anuales. Los estudiantes son supervisados por tutores de la escuela y de la empresa.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>¿Qué documentación necesito para la matriculación?</h3>
+                        <i class='bx bx-chevron-down faq-icon'></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para la matriculación se requiere: DNI del estudiante y padres/tutores, partida de nacimiento, certificado de finalización de estudios anteriores, y fotos 4x4. La documentación completa se especifica en la circular de inscripción.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-cta">
+                <p>¿No encontraste lo que buscabas?</p>
+                <a href="#foro" class="cta-button">Pregunta en nuestro foro</a>
+            </div>
+        </div>
+    </section>
+
     {% include "footer.html" %}
+
+    <script>
+        // Función para alternar las preguntas FAQ
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const icon = element.querySelector('.faq-icon');
+            if (element.classList.contains('active')) {
+                icon.classList.remove('bx-chevron-down');
+                icon.classList.add('bx-chevron-up');
+            } else {
+                icon.classList.remove('bx-chevron-up');
+                icon.classList.add('bx-chevron-down');
+            }
+        }
+
+        // Abrir primera pregunta por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstFaq = document.querySelector('.faq-item');
+            if (firstFaq) {
+                toggleFAQ(firstFaq);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,12 +1,8 @@
 {% load static %}
 <header class="hero" id="hero">
     <nav class="nav container" id="nav">
-        <!-- <div>
-            <a href="{% url "home" %}"><img class="nav_logo" src="{% static 'logo_amarillo.jpg' %}" alt=""></a>
-        </div> -->
-
         <div>
-            <a class="nav_logo" href="{% url "home" %}">UPL</a>
+            <a class="nav_logo" href="{% url "home" %}">Tecnica 7</a>
         </div>
 
         {% if user.is_authenticated %}

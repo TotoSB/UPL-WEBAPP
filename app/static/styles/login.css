@@ -2,20 +2,77 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Roboto', sans-serif; */
     font-family: "Bakbak One", sans-serif;
-  }
-  
-  :root{
-  
-    --color:#1877f2;
-    --color1:#f5d34d;
-    --color2:#BA17BD;
-    --color3:#fff;
-    --color4:#000;
-  }
-  
-  body{
+}
+
+:root{
+    --color: #2596be; /* Azul principal */
+    --color1: #edbc3c; /* Amarillo */
+    --color2: #0a504e; /* Verde oscuro */
+    --color3: #fff; /* Blanco */
+    --color4: #000; /* Negro */
+    --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.18);
+    --gradient-bg: linear-gradient(135deg, var(--color) 0%, #1b7a9e 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color1) 0%, #e0a800 100%);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+body{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,94 +80,367 @@
     min-height: 100vh;
     max-width: 100vw;
     overflow-x: hidden;
-    background-color: #eee;
+    background: var(--gradient-bg);
+    background-attachment: fixed;
+    position: relative;
+}
 
-    height: 100vh;
-  
-  }
-  
-  /* =========================== */
+/* Partículas de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(237, 188, 60, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(10, 80, 78, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    z-index: -1;
+}
 
+/* =========================== */
 
 main {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
+    min-height: 100vh;
+    padding: 20px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease;
 }
 
 main h1{
-  display: none;
+    display: none;
+    color: var(--color3);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: slideInLeft 0.8s ease;
+    position: relative;
+}
+
+main h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--color1);
+    border-radius: 2px;
 }
 
 main h2{
-    color: var(--color4);
-    font-size: 22px;
+    color: var(--color3);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease 0.2s both;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease 0.3s both;
+    font-family: 'Roboto', sans-serif;
 }
 
 form {
-    margin-top: 25px;
-    background-color: var(--color3);
-    border-radius: 3px;
-    color: #fff;
+    margin-top: 20px;
+    background: var(--color3);
+    border-radius: 20px;
+    color: var(--color4);
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 30px;
+    padding: 40px 30px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.4s ease;
+    animation: bounceIn 0.8s ease 0.4s both;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-accent);
+}
+
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px 0;
+    position: relative;
+    animation: fadeInUp 0.6s ease both;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.5s; }
+.form-group:nth-child(2) { animation-delay: 0.6s; }
+
+form label{
+    margin-bottom: 8px;
+    text-align: start;
+    color: var(--color2);
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
 }
 
 form input {
-    padding: 10px;
-    border-radius: 4px;
-    border: 3px solid var(--color2);
-}
-
-form p {
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    flex-direction: column;
+    padding: 15px 15px 15px 45px;
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    background: #f8f9fa;
+    font-size: 1rem;
+    transition: all 0.3s ease;
     width: 100%;
-    margin: 5px 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-form label{
-    margin-bottom: 5px;
-    text-align: start;
-    color: var(--color4);
+form input:focus {
+    outline: none;
+    border-color: var(--color1);
+    background: var(--color3);
+    box-shadow: 0 0 0 3px rgba(237, 188, 60, 0.1);
+    transform: translateY(-2px);
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+form input:focus + .input-icon {
+    color: var(--color1);
+    animation: float 1s ease-in-out;
 }
 
 #boton {
-    background-color: transparent;
-    color: var(--color4);
+    background: var(--gradient-accent);
+    color: var(--color3);
     cursor: pointer;
     width: 100%;
-    font-size: 20px;
-    border:3px solid var(--color2) ;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(237, 188, 60, 0.3);
+    animation: fadeInUp 0.6s ease 0.7s both;
+}
+
+#boton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
 }
 
 #boton:hover{
-    transition: 0.2s ease-in-out all;
-    background-color: var(--color2);
-    color: var(--color3);
+    background: linear-gradient(135deg, #e0a800 0%, var(--color1) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(237, 188, 60, 0.4);
     cursor: pointer;
+}
+
+#boton:hover::before {
+    left: 100%;
+}
+
+#boton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(237, 188, 60, 0.3);
+}
+
+/* Enlaces adicionales */
+.login-links {
+    margin-top: 25px;
+    text-align: center;
+    animation: fadeInUp 0.6s ease 0.8s both;
+}
+
+.login-links a {
+    color: var(--color3);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 0 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-links a:hover {
+    color: var(--color1);
+    transform: translateY(-2px);
+}
+
+/* Mensajes de error/éxito */
+.messages {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.6s ease;
+}
+
+.message {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    animation: slideInLeft 0.5s ease;
+}
+
+.message.error {
+    background: #fee;
+    color: #c33;
+    border-left: 4px solid #c33;
+}
+
+.message.success {
+    background: #efe;
+    color: #363;
+    border-left: 4px solid #363;
 }
 
 /* ==================================== */
   
-  
-  
-  @media (min-width:845px){
+@media (min-width:768px){
     main h1{
-      display: flex;
-      color: var(--color2);
-      letter-spacing: 7px;
-      text-decoration: none;
+        display: block;
+        font-size: 3rem;
+        margin-bottom: 15px;
     }
+    
+    main h2{
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
     form{
-      min-width: 430px;
+        min-width: 430px;
+        padding: 50px 40px;
+    }
+    
+    form input {
+        padding: 16px 16px 16px 50px;
+        font-size: 1.05rem;
+    }
+    
+    #boton {
+        padding: 16px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width:1024px){
+    main h1{
+        font-size: 3.5rem;
+    }
+    
+    form{
+        min-width: 450px;
+    }
+}
+
+/* Estados de carga */
+.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+/* Efecto de onda en el botón */
+.wave-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.wave-effect:focus:not(:active)::after {
+    animation: wave 0.6s ease-out;
+}
+
+@keyframes wave {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
     }
 }
